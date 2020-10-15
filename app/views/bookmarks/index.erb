@@ -1,0 +1,10 @@
+<form class="" action="/bookmarks" method="post">
+  <input type="text" name="bookmark_url">
+  <input type="submit" value="Save">
+</form>
+
+<div class="">
+  <% bookmarks.each do |bookmark| %>
+    <p><%= bookmark.url %></p>
+  <% end %>
+</div>
