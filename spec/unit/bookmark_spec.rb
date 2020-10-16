@@ -1,16 +1,11 @@
 require './app/models/bookmark'
+require 'db_connection'
 
 describe Bookmark do
   describe '.find_by' do
     it 'returns a bookmark instance by id' do
-      begin
-        connection = PG.connect :dbname => "demo_bookmark_manager_#{ENV['RACK_ENV']}"
-        connection.exec("INSERT INTO bookmarks (url, title) VALUES('test_url', 'test_title')")
-      rescue PG::Error => e
-        puts e.message
-      ensure
-        connection.close if connection
-      end
+      DBConnection.exec("INSERT INTO bookmarks (url, title) VALUES('http://www.test.com', 'test_title')")
+
       bookmarks = Bookmark.all
       bookmark = bookmarks.first
       found_bookmark = Bookmark.find_by(id: bookmark.id)
@@ -23,40 +18,27 @@ describe Bookmark do
 
   describe '.all' do
     it 'returns an array of bookmarks' do
-      begin
-        connection = PG.connect :dbname => "demo_bookmark_manager_#{ENV['RACK_ENV']}"
-        connection.exec("INSERT INTO bookmarks (url) VALUES('test_url')")
-      rescue PG::Error => e
-        puts e.message
-      ensure
-        connection.close if connection
-      end
+      DBConnection.exec("INSERT INTO bookmarks (url, title) VALUES('http://www.test.com', 'test_title')")
 
       bookmarks = Bookmark.all
 
-      expect(bookmarks.first.url).to eq 'test_url'
+      expect(bookmarks.first.url).to eq 'http://www.test.com'
+      expect(bookmarks.first.title).to eq 'test_title'
     end
   end
 
   describe '.create' do
     it 'returns a bookmark instance that is persisted' do
-      Bookmark.create(url: 'test_create_url', title: 'test')
+      Bookmark.create(url: 'http://www.test.com', title: 'test')
       bookmarks = Bookmark.all
-      expect(bookmarks.first.url).to eq 'test_create_url'
+      expect(bookmarks.first.url).to eq 'http://www.test.com'
       expect(bookmarks.first.title).to eq 'test'
     end
   end
 
   describe '.delete' do
     it 'removes a record from the table' do
-      begin
-        connection = PG.connect :dbname => "demo_bookmark_manager_#{ENV['RACK_ENV']}"
-        connection.exec("INSERT INTO bookmarks (url, title) VALUES('test_url', 'test_title')")
-      rescue PG::Error => e
-        puts e.message
-      ensure
-        connection.close if connection
-      end
+      DBConnection.exec("INSERT INTO bookmarks (url, title) VALUES('http://www.test.com', 'test_title')")
 
       bookmarks = Bookmark.all
       first_bookmark = bookmarks[0]
@@ -70,23 +52,55 @@ describe Bookmark do
 
   describe '#update' do
     it 'updates a record from the table' do
-      begin
-        connection = PG.connect :dbname => "demo_bookmark_manager_#{ENV['RACK_ENV']}"
-        connection.exec("INSERT INTO bookmarks (url, title) VALUES('test_url', 'test_title')")
-      rescue PG::Error => e
-        puts e.message
-      ensure
-        connection.close if connection
-      end
+      DBConnection.exec("INSERT INTO bookmarks (url, title) VALUES('http://www.test.com', 'test_title')")
 
       bookmarks = Bookmark.all
       first_bookmark = bookmarks[0]
 
-      first_bookmark.update(url: 'new_url', title: 'new_title')
+      first_bookmark.update(url: 'http://www.title.com', title: 'new_title')
       updated_bookmark = Bookmark.find_by(id: first_bookmark.id)
 
-      expect(updated_bookmark.url).to eq 'new_url'
+      expect(updated_bookmark.url).to eq 'http://www.title.com'
       expect(updated_bookmark.title).to eq 'new_title'
+    end
+  end
+
+  describe '#valid?' do
+    it 'true if the url is valid' do
+      bookmark = described_class.new(id: nil, url: 'http://www.bbc.co.uk', title: 'bbc')
+
+      expect(bookmark.valid?).to eq true
+      expect(bookmark.errors.empty?).to eq true
+    end
+
+    it 'false if the url is invalid' do
+      bookmark = described_class.new(id: nil, url: 'blaaa', title: 'bla')
+
+      expect(bookmark.valid?).to eq false
+    end
+
+    it 'false if the url is invalid' do
+      bookmark = described_class.new(id: nil, url: 'blaaa', title: 'bla')
+      bookmark.valid?
+
+      expect(bookmark.errors.empty?).to eq false
+      expect(bookmark.errors.keys).to include(:url)
+    end
+  end
+
+  describe '#errors' do
+    it 'starts empty' do
+      bookmark = described_class.new(id: nil, url: 'http://www.bbc.co.uk', title: 'bbc')
+
+      expect(bookmark.errors.empty?).to eq true
+    end
+
+    it 'can add key value pairs' do
+      bookmark = described_class.new(id: nil, url: 'blaaa', title: 'bla')
+      bookmark.errors[:test] = 'test'
+
+      expect(bookmark.errors.empty?).to eq false
+      expect(bookmark.errors.keys).to include(:test)
     end
   end
 end
