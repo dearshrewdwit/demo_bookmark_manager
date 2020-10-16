@@ -1,5 +1,5 @@
-require 'pg'
 require './lib/db_connection'
+require_relative 'comment'
 
 class Bookmark
   include DBConnection
@@ -61,6 +61,13 @@ class Bookmark
     rescue
       errors[:url] = "#{url} is an invalid URL"
       false
+    end
+  end
+
+  def comments
+    result = DBConnection.exec("SELECT * FROM comments WHERE bookmark_id = #{id}")
+    comments = result.map do |row|
+      Comment.new(id: row["id"], text: row["text"])
     end
   end
 end

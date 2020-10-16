@@ -1,6 +1,7 @@
 ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require_relative 'models/bookmark'
+require_relative 'models/comment'
 require 'sinatra/flash'
 
 class BookmarkManager < Sinatra::Base
@@ -41,6 +42,12 @@ class BookmarkManager < Sinatra::Base
     else
       flash.next[:error] = bookmark.errors
     end
+    redirect '/bookmarks'
+  end
+
+  post '/bookmarks/:id/comments' do
+    bookmark = Bookmark.find_by(id: params[:id])
+    comment = Comment.create(text: params[:comment_text], bookmark_id: bookmark.id)
     redirect '/bookmarks'
   end
 end
