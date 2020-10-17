@@ -32,9 +32,9 @@ $ bundle exec rspec
 ### Diffs, Branches, and Recordings
 
 Check out the [pull requests](https://github.com/dearshrewdwit/demo_bookmark_manager/pulls) that show the diff for each section I worked through.
-- [branch version1: Steps 1-10](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version1) | [recording](https://youtu.be/LHX1SqQ5F-g)
-- [branch version2: Steps 11-13](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version2) | [recording]()
-- [branch version3: Steps 14-15](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version3) | [recording]()
-- [branch version4: Steps 16](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version4) | [recording]()
-- [branch version5: Steps 17](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version5) | [recording]()
-- [branch version6: Steps 18-19](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version6) | [recording]()
+- branch [version1](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version1): Steps 1-10 | [recording](https://youtu.be/LHX1SqQ5F-g)
+- branch [version2](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version2): Steps 11-13 | [recording](https://youtu.be/lfcUauCejx4)
+- branch [version3](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version3): Steps 14-15 | [recording](https://youtu.be/c7vVCXJzjX0)
+- branch [version4](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version4): Steps 1] | [recording](https://youtu.be/-FiN_820MEc)
+- branch [version5](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version5): Steps 17 | [recording](https://youtu.be/lUgXzqBaDT4), [recording2](https://youtu.be/weFlLixdrBw)
+- branch [version6](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version6): Steps 18-19 | [recording](https://youtu.be/sV346p8zIkQ)
