@@ -12,7 +12,7 @@ task 'db:migrate', :db_migrate do |tsk, args|
   end
 
   puts "running #{tsk} in #{ENV['RACK_ENV']} mode"
-  Dir.glob("db/migrations/**").each do |path|
+  Dir.glob("db/migrations/**").sort.each do |path|
     print "Running migration: #{path}..."
     system("ruby #{path} RACK_ENV=#{ENV['RACK_ENV']}")
     puts "Migrated"
