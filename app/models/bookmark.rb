@@ -70,4 +70,18 @@ class Bookmark
       Comment.new(id: row["id"], text: row["text"])
     end
   end
+
+  def comments
+    result = DBConnection.exec("SELECT * FROM comments WHERE bookmark_id = #{id}")
+    comments = result.map do |row|
+      Comment.new(id: row["id"], text: row["text"])
+    end
+  end
+
+  def tags
+    result = DBConnection.exec("SELECT * FROM tags JOIN bookmarks_tags ON bookmarks_tags.tag_id = tags.id WHERE bookmarks_tags.bookmark_id = #{id}")
+    tags = result.map do |row|
+      Tag.new(id: row["tag_id"], content: row["content"])
+    end
+  end
 end

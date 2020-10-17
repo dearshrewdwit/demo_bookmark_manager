@@ -1,4 +1,7 @@
 require './app/models/bookmark'
+require './app/models/tag'
+require './app/models/bookmarks_tags'
+
 require 'db_connection'
 
 describe Bookmark do
@@ -110,6 +113,17 @@ describe Bookmark do
       comment = Comment.create(text: 'a test comment', bookmark_id: bookmark.id)
       expect(bookmark.comments.length).to eq 1
       expect(bookmark.comments.first.text).to eq 'a test comment'
+    end
+  end
+
+  describe '#tags' do
+    it 'returns an array of tags' do
+      bookmark = described_class.create(url: 'http://www.bbc.co.uk', title: 'bbc')
+      tag = Tag.find_or_create(content: 'happy')
+      BookmarksTags.create(tag_id: tag.id, bookmark_id: bookmark.id)
+
+      expect(bookmark.tags.length).to eq 1
+      expect(bookmark.tags.first.content).to eq 'happy'
     end
   end
 end
