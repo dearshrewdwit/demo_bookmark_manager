@@ -1,13 +1,3 @@
-<form class="" action="/bookmarks" method="post">
-  <label for="url">URL: </label>
-  <input type="text" name="bookmark_url">
-  <label for="url">Title: </label>
-  <input type="text" name="bookmark_title">
-  <label for="url">Tags: </label>
-  <input type="text" name="bookmark_tags">
-  <input type="submit" value="Save">
-</form>
-
 <div class="">
   <% bookmarks.each do |bookmark| %>
     <div id="<%= bookmark.id %>">
@@ -17,6 +7,7 @@
           <a href="<%= "/tags/#{tag.id}/bookmarks" %>"><%= tag.content %></a>
         </div>
       <% end %>
+      
       <a href="<%= "/bookmarks/#{bookmark.id}/edit" %>">Edit</a>
       <form class="" action="<%= "/bookmarks/#{bookmark.id}" %>" method="post">
         <input type="hidden" name="_method" value="DELETE">

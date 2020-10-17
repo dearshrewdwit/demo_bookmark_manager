@@ -6,9 +6,12 @@ feature 'Creating bookmarks' do
       visit('/bookmarks')
       fill_in('bookmark_url', with: 'http://www.test.com')
       fill_in('bookmark_title', with: 'test')
+      fill_in('bookmark_tags', with: 'test_tag short')
       click_button('Save')
       expect(page).to have_content("Bookmark saved")
       expect(page).to have_link('test', href: 'http://www.test.com')
+      expect(page).to have_link("test_tag")
+      expect(page).to have_link("short")
       expect(page.current_path).to have_content('/bookmarks')
     end
   end
