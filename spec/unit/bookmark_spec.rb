@@ -103,4 +103,13 @@ describe Bookmark do
       expect(bookmark.errors.keys).to include(:test)
     end
   end
+
+  describe '#comments' do
+    it 'returns an array of comments' do
+      bookmark = described_class.create(url: 'http://www.bbc.co.uk', title: 'bbc')
+      comment = Comment.create(text: 'a test comment', bookmark_id: bookmark.id)
+      expect(bookmark.comments.length).to eq 1
+      expect(bookmark.comments.first.text).to eq 'a test comment'
+    end
+  end
 end

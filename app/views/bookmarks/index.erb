@@ -8,11 +8,20 @@
   <% bookmarks.each do |bookmark| %>
     <div id="<%= bookmark.id %>">
       <a href="<%= bookmark.url%>"><%= bookmark.title %></a>
+      <form class="" action="<%= "/bookmarks/#{bookmark.id}/comments" %>" method="post">
+        <input type="text" name="comment_text">
+        <input type="submit" value="submit">
+      </form>
       <a href="<%= "/bookmarks/#{bookmark.id}/edit" %>">Edit</a>
       <form class="" action="<%= "/bookmarks/#{bookmark.id}" %>" method="post">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Delete">
       </form>
+      <% bookmark.comments.each do |comment| %>
+        <div>
+          <p><%= comment.text %></p>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>
