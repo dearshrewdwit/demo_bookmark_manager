@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 feature 'Creating bookmarks' do
+  let!(:user) { User.create(email: 'test@test.com', password: 'test12') }
+  before { sign_in(email: 'test@test.com', password: 'test12') }
+
   context 'valid bookmark' do
     scenario 'can add a bookmark and see it on the page' do
       visit('/bookmarks')

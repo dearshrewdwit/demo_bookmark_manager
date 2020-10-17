@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature 'viewing bookmarks by tag' do
+  let!(:user) { User.create(email: 'test@test.com', password: 'test12') }
   let!(:bookmark1) { Bookmark.create(url: 'https://www.google.co.uk', title: 'google') }
   let!(:bookmark2) { Bookmark.create(url: 'https://www.bbc.co.uk', title: 'BBC') }
   let!(:bookmark3) { Bookmark.create(url: 'https://www.nyt.com', title: 'nyt') }
@@ -8,6 +9,8 @@ feature 'viewing bookmarks by tag' do
   let!(:tag1) { Tag.find_or_create(content: 'news') }
   let!(:bookmark_tag) { BookmarksTags.create(bookmark_id: bookmark2.id, tag_id: tag1.id) }
   let!(:bookmark_tag2) { BookmarksTags.create(bookmark_id: bookmark3.id, tag_id: tag1.id) }
+
+  before { sign_in(email: 'test@test.com', password: 'test12') }
 
   scenario 'are on the page' do
     visit '/bookmarks'

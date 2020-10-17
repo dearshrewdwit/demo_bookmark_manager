@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 feature 'Updating bookmarks' do
+  let!(:user) { User.create(email: 'test@test.com', password: 'test12') }
+  before { sign_in(email: 'test@test.com', password: 'test12') }
   before { Bookmark.create(url: 'https://www.bbc.co.uk', title: 'BBC') }
   before { Bookmark.create(url: 'https://www.google.co.uk', title: 'google') }
 

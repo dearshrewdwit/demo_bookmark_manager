@@ -11,3 +11,7 @@ gem "sinatra", "~> 2.1"
 gem "pg", "~> 1.2"
 
 gem "sinatra-flash", "~> 0.3.0"
+
+gem "bcrypt", "~> 3.1"
+
+gem "rake", "~> 13.0"
