@@ -9,8 +9,7 @@
     <div id="<%= bookmark.id %>">
       <a href="<%= bookmark.url%>"><%= bookmark.title %></a>
       <a href="<%= "/bookmarks/#{bookmark.id}/edit" %>">Edit</a>
-      <form class="" action="/bookmarks" method="post">
-        <input type="hidden" name="bookmark_id" value="<%= bookmark.id %>">
+      <form class="" action="<%= "/bookmarks/#{bookmark.id}" %>" method="post">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Delete">
       </form>
