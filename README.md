@@ -42,3 +42,4 @@ Check out the [pull requests](https://github.com/dearshrewdwit/demo_bookmark_man
 - branch [version4](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version4): Steps 16 | [recording](https://youtu.be/-FiN_820MEc)
 - branch [version5](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version5): Steps 17 | [recording](https://youtu.be/lUgXzqBaDT4), [recording2](https://youtu.be/weFlLixdrBw)
 - branch [version6](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/version6): Steps 18-19 | [recording](https://youtu.be/sV346p8zIkQ)
+- branch [bonus](https://github.com/dearshrewdwit/demo_bookmark_manager/tree/bonus): migrations
