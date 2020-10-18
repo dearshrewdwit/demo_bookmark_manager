@@ -12,6 +12,7 @@ require_relative 'models/user'
 
 require_relative 'controllers/app_controller'
 require_relative 'controllers/bookmarks_controller'
+require_relative 'controllers/comments_controller'
 require_relative 'controllers/tags_controller'
 require_relative 'controllers/registrations_controller'
 require_relative 'controllers/sessions_controller'
