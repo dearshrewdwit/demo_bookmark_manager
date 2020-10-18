@@ -18,6 +18,7 @@ There is no styling. I forewarn you.
 $ git clone git@github.com:dearshrewdwit/demo_bookmark_manager.git && cd demo_bookmark_manager
 $ bundle install
 $ createdb demo_bookmark_manager_development
+$ bundle exec rake db:setup RACK_ENV=development
 $ bundle exec rake db:migrate RACK_ENV=development
 $ bundle exec rackup
 ```
@@ -27,6 +28,7 @@ $ bundle exec rackup
 ```sh
 # master branch
 $ createdb demo_bookmark_manager_test
+$ bundle exec rake db:setup RACK_ENV=test
 $ bundle exec rake db:migrate RACK_ENV=test
 $ bundle exec rspec
 ```
